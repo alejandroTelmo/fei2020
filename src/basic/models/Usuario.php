@@ -22,6 +22,8 @@ class Usuario extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+  
+
     public static function tableName()
     {
         return 'usuario';
