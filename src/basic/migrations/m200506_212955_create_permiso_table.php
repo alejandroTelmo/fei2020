@@ -18,6 +18,7 @@ class m200506_212955_create_permiso_table extends Migration
             'is_staff' => $this->boolean(),
         ]);
     }
+    
 
     /**
      * {@inheritdoc}
