@@ -9,4 +9,11 @@ class Usuario extends \app\models\Usuario
   {
       return ['id','apellido','username'];
   }
+
+  public function extrafields()
+  {
+      return ['edad','permisos','usuarioPermisos'];
+  }
+
+
 }
