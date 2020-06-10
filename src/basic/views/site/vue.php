@@ -25,20 +25,24 @@ $this->registerJsFile("https://cdn.jsdelivr.net/npm/vue/dist/vue.js",[
 
     <th scope="col" id="nombre">Nombre</th><th scope="col"id="descripcion">Descripción</th><th scope="col" id="precio">Precio</th><th scope="col" id="cantidad">Cantidad</th><th scope="col" id="agregar">Agregar</th>
 
-    <tr v-for="producto in productos"><td>{{producto.nombre}} </td><td>{{producto.descripcion}} </td><td>{{producto.precio}} </td><td><input  v-model="producto.cantidad" > </td> <td><button v-on:click="producto.cantidad++">+</button><button v-on:click="producto.cantidad--">-</button></td></tr>
+    <tr v-for="producto in productos"><td>{{producto.nombre}} </td><td>{{producto.descripcion}} </td><td>{{producto.precio}} </td><td><input v-model="producto.cantidad"> </td> <td><button v-on:click="producto.cantidad++">+</button><button v-on:click="producto.cantidad--">-</button></td></tr>
 
-      <input v:model="nuevoNombre" placeholder="nombre" >
+      <input v-model="nuevoNombre" @keyup.enter="fNombre" ref="productoNombre" placeholder="nombre" >
 
-      <input v:model="nuevaDescripcion" placeholder="descripcion" >
+      <input v-model="nuevaDescripcion" @keyup.enter="fDescripcion" ref="productoDescripcion" placeholder="descripcion" >
 
-      <input v:model.number="nuevoPrecio" placeholder="precio" >
+      <input v-model.number="nuevoPrecio"@keyup.enter="fPrecio" ref="productoPrecio" placeholder="precio" >
 
-      <button v-on:click="agregarProducto">+</button>
+      <input v-model.number="nuevaCantidad"ref="productoCantidad" @keyup.enter="agregarProducto" placeholder="cantidad" >
+
+      <button v-on:click="agregarProducto">mas</button>
+
+
 </table>
 <span>El total de todos los precios es : {{totalProductos}} </span><hr>
      
   <input v-model="napellido" placeholder="ingrese su apellido"><p>Hola {{mio}}, esperamos tu consulta ! </p>
-  <input v-model.number="nedad" placeholder="ingrese su edad"><p v-if="edad > 20 && edad < 30">Estas hecho un pibe {{mio}}, esperamos tu consulta ! </p>
+  <input v-model.number="nedad" @keyup.enter="mas" placeholder="ingrese su edad"><p v-if="edad > 20 && edad < 30">Estas hecho un pibe {{mio}}, esperamos tu consulta ! </p>
   <button @click="mas">+</button>
   <ul v-for="cliente in clientes">
   <li> Hola {{cliente.apellido}}</li><span>Edad : {{cliente.edad}} </span><span>Corregir edad </span><span> <button v-on:click="cliente.edad++">+</button><button v-on:click="cliente.edad--">-</button> </span>
@@ -67,7 +71,8 @@ var app1 = new Vue({
     nuevoNombre:'',
     nuevaDescripcion:'',
     nuevoPrecio:0,
-    cantidad:0,
+    nuevaCantidad:0,
+
     mio:'',
     nedad:0,
     napellido:'',
@@ -88,10 +93,31 @@ var app1 = new Vue({
         nombre: this.nuevoNombre,
         descripcion: this.nuevaDescripcion,
         precio: this.nuevoPrecio,
-        cantidad:0
+        cantidad: this.nuevaCantidad
+     
         }
       )
-  },mas(){
+      this.nuevoNombre='',
+      this.nuevaDescripcion='',
+      this.nuevoPrecio=0,
+      this.nuevaCantidad=0,
+      this.$refs.productoNombre.focus()
+  },fNombre(){
+   
+      this.$refs.productoDescripcion.focus()
+    
+  }
+  ,fDescripcion(){
+   
+   this.$refs.productoPrecio.focus(),
+   this.$refs.productoPrecio.select()
+}
+,fPrecio(){
+   
+   this.$refs.productoCantidad.focus(),
+   this.$refs.productoCantidad.select()
+}
+ , mas(){
     this.clientes.push(
       {
         apellido:this.napellido,
