@@ -43,6 +43,7 @@ AppAsset::register($this);
             ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Vue', 'url' => ['/site/vue']],
             ['label' => 'VueDos', 'url' => ['/site/vue2']],
+          
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

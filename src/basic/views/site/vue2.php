@@ -26,7 +26,7 @@ Hello world  enlazado (array)!!!
 Hello world  js condicional!!!
 </p>
 <button class="btn btn-warning" @click="es_info = !es_info"> Change </button>
-
+<p>dsfasfa</p>
 </div>
 
 </div>

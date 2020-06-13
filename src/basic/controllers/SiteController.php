@@ -9,6 +9,8 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Producto;
+use app\models\Domicilio;
 
 class SiteController extends Controller
 {
@@ -145,4 +147,6 @@ class SiteController extends Controller
     {
         return $this->render('vue2');
     }
+
+ 
 }
